@@ -1,0 +1,228 @@
+:root {
+  --bg: #1a1a1a;
+  --text: #ffffff;
+  --text-secondary: #aaaaaa;
+  --progress-bg: #333333;
+  --progress-fill: #4a90d9;
+  --ar-btn-bg: #4a90d9;
+  --ar-btn-text: #ffffff;
+  --ar-close-bg: rgba(0, 0, 0, 0.6);
+  --ar-hint-bg: rgba(0, 0, 0, 0.6);
+  --ar-error-bg: rgba(220, 50, 50, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--bg);
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--progress-bg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--progress-fill);
+  transition: width 0.1s ease-out;
+}
+
+.info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.info h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.info p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ar-button {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ar-btn-text);
+  background: var(--ar-btn-bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.ar-button:hover {
+  background: #3a7bc8;
+}
+
+.ar-button:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+@media (max-width: 600px) {
+  .info {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+  
+  .info h1 {
+    font-size: 1.2rem;
+  }
+  
+  .info p {
+    font-size: 0.8rem;
+  }
+
+  .ar-button {
+    bottom: 65px;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 601px) {
+  .info {
+    bottom: 30px;
+  }
+}
+
+.ar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #000;
+  overflow: hidden;
+}
+
+.ar-overlay[hidden] {
+  display: none;
+}
+
+#ar-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotateY(180deg);
+}
+
+#ar-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.ar-ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ar-close {
+  position: absolute;
+  top: env(safe-area-inset-top, 16px);
+  right: env(safe-area-inset-right, 16px);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ar-close-bg);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s;
+}
+
+.ar-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.ar-hint {
+  position: absolute;
+  bottom: env(safe-area-inset-bottom, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background: var(--ar-hint-bg);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.85rem;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.ar-error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 28px;
+  background: var(--ar-error-bg);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  max-width: 90%;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+}
+
+.ar-error[hidden] {
+  display: none;
+}

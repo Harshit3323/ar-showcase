@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Viewer</title>
+  </head>
+  <body>
+    <model-viewer
+      id="viewer"
+      src="/models/product.glb"
+      alt="3D product model"
+      camera-controls
+      auto-rotate
+      touch-action="pan-y"
+      shadow-intensity="1"
+      environment-image="neutral"
+      exposure="1"
+      loading="eager">
+      <div slot="progress-bar" class="progress-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </model-viewer>
+    <div class="info">
+      <h1>Product Viewer</h1>
+      <p>Interactive 3D view of the product model. Drag to rotate, scroll to zoom.</p>
+    </div>
+
+    <button id="ar-button" class="ar-button">View in AR</button>
+
+    <div id="ar-overlay" class="ar-overlay" hidden>
+      <video id="ar-video" autoplay muted playsinline></video>
+      <canvas id="ar-canvas" touch-action="none"></canvas>
+      <div class="ar-ui">
+        <button id="ar-close" class="ar-close" aria-label="Close AR view">✕</button>
+        <div id="ar-hint" class="ar-hint">Drag to rotate, pinch to resize, double tap to reset</div>
+        <div id="ar-error" class="ar-error" hidden></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
